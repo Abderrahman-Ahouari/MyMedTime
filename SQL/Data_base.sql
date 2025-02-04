@@ -18,11 +18,11 @@ CREATE TABLE patients (
     phone VARCHAR(15)
 );
 
-CREATE TABLE medecins (
+CREATE TABLE doctors (
     id SERIAL PRIMARY KEY,
     user_id INT UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     specialty VARCHAR(100),
-    available_hours TEXT
+    available_days TEXT
 );
 
 CREATE TABLE appointments (
