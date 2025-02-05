@@ -28,9 +28,11 @@ CREATE TABLE doctors (
 CREATE TABLE appointments (
     id SERIAL PRIMARY KEY,
     patient_id INT NOT NULL REFERENCES patients(id) ON DELETE CASCADE,
-    medecin_id INT NOT NULL REFERENCES medecins(id) ON DELETE CASCADE,
+    medecin_id INT NOT NULL REFERENCES doctors(id) ON DELETE CASCADE,
     appointment_date TIMESTAMP NOT NULL,
     status VARCHAR(20) CHECK (status IN ('pending', 'confirmed', 'cancelled')) DEFAULT 'pending',
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
