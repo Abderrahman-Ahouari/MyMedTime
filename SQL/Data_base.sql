@@ -7,23 +7,16 @@ CREATE TABLE users (
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     password TEXT NOT NULL,
-    role VARCHAR(20) CHECK (role IN ('patient', 'medecin', 'admin')),
+    role VARCHAR(20) CHECK (role IN ('patient', 'medecin')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); 
 
-CREATE TABLE patients (
-    id SERIAL PRIMARY KEY,
-    user_id INT UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    date_of_birth DATE,
-    phone VARCHAR(15)
-);
 
-CREATE TABLE doctors (
+CREATE TABLE availability (
     id SERIAL PRIMARY KEY,
-    user_id INT UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    specialty VARCHAR(100),
-    available_days TEXT
-);
+    doctor_id INT UNIQUE NOT NULL REFERENCES doctors(id) ON DELETE CASCADE,
+    available_day TEXT
+)
 
 CREATE TABLE appointments (
     id SERIAL PRIMARY KEY,
@@ -34,5 +27,4 @@ CREATE TABLE appointments (
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 

@@ -1,6 +1,6 @@
 <?php
 
-class patient extends user implements signup{
+class patient extends user{
     private $birth_date;
     private $phone;
 
@@ -32,26 +32,8 @@ class patient extends user implements signup{
              $query->execute();
 
 
- 
          $_SESSION['id'] = $this->conn->lastInsertId();
          $_SESSION['role'] = $role;
-
-
-
-         $sql = "INSERT INTO patients(user_id, date_of_birth, phone) 
-             VALUES(:user_id, :date_of_birth, :phone );";
- 
-             $query = $this->conn->prepare($sql);
-
-             $userid = $_SESSION['id'];
-    
-             $query->bindParam(':user_id', $userid, PDO::PARAM_STR);
-             $query->bindParam(':date_of_birth', $this->birth_date, PDO::PARAM_STR);
-             $query->bindParam(':phone', $this->phone, PDO::PARAM_STR);
-
-     
-             $query->execute();
-
  
          }catch(PDOException $error){
          die("an error in signup method for patients" . $error->getMessage());

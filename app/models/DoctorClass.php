@@ -1,6 +1,6 @@
 <?php
 
-class patient extends user implements signup{
+class doctor extends user{
     private $speciality;
     private $available_days;
     
@@ -17,7 +17,7 @@ class patient extends user implements signup{
              VALUES(:first_name, :last_name, :email, :password, :role );";
  
              $hasshed_password = password_hash($this->password,PASSWORD_DEFAULT);
-             $role = 'patient';
+             $role = 'doctor';
  
              $query = $this->conn->prepare($sql);
  
@@ -34,69 +34,57 @@ class patient extends user implements signup{
          $_SESSION['id'] = $this->conn->lastInsertId();
          $_SESSION['role'] = $role;
 
-
-
-         $sql = "INSERT INTO doctors(user_id, specialty) 
-             VALUES(:user_id, :specialty );";
- 
-             $query = $this->conn->prepare($sql);
-
-             $userid = $_SESSION['id'];
-    
-             $query->bindParam(':user_id', $userid, PDO::PARAM_STR);
-             $query->bindParam(':date_of_birth', $this->birth_date, PDO::PARAM_STR);
-             $query->bindParam(':phone', $this->phone, PDO::PARAM_STR);
-
-     
-             $query->execute();
-
  
          }catch(PDOException $error){
-         die("an error in signup method for patients" . $error->getMessage());
+         die("an error in signup method for doctor" . $error->getMessage());
          }   
     }
 
 
-
-    public function TakeReservation($medcin_id,$appointment_date,$notes){
-        try {
-            $sql = "INSERT INTO appointments(patient_id, medecin_id, appointment_date, notes) 
-            VALUES(:patient_id, :medecin_id, :appointment_date, :notes);";
-
-            $query = $this->conn->prepare($sql);
-
-            $userid = $this->user_id; 
-
-            $query->bindParam(':patient_id', $userid, PDO::PARAM_INT);
-            $query->bindParam(':medecin_id', $medcin_id, PDO::PARAM_INT);
-            $query->bindParam(':appointment_date', $appointment_date, PDO::PARAM_STR);
-            $query->bindParam(':notes', $notes, PDO::PARAM_STR);
-
-    
-            $query->execute();
-        } catch (PDOException $error) {
-            die("an error in TakeReservation method");
-        }
-    }
-
-
-    public function getPatientReservations(){
+    public function getDoctorReservations(){
         try{
-        $sql = "SELECT appointments.*, doctors.* FROM appointments
-        INNER JOIN doctors on appointments.medecin_id = doctors.id AND appointments.patient_id = :patient_id;";
+        $sql = "SELECT appointments.*, patients.* FROM appointments
+        INNER JOIN patients on appointments.patient_id = patients.id AND appointments.medecin_id = :medecin_id;";
 
             $query = $this->conn->prepare($sql); 
 
             $userid = $this->user_id; 
 
-            $query->bindParam(':patient_id', $userid, PDO::PARAM_INT);
+            $query->bindParam(':medecin_id', $userid, PDO::PARAM_INT);
 
             $query->execute();
         } catch (PDOException $error) {
-        die("an error in signup method for patients" . $error->getMessage());        
+        die("an error in getDoctorReservations method for patients" . $error->getMessage());        
         }
         
     }
+
+
+    public function addDisponibility(){
+        try {
+            
+        } catch (PDOException $error){
+            die("an error in addDisponibility method for doctor: " . $error->getMessage());
+        }
+    }
+
+    public function addDisponibility($available_day){
+        try {
+
+            $sql = "INSERT INTO availability (doctor_id, available_day) VALUES (:doctor_id, :available_day)";
+
+            $query = $this->conn->prepare($sql);
+            
+            $query->bindParam(":doctor_id", $doctor_id, PDO::PARAM_INT);
+            $query->bindParam(":available_day", $available_day, PDO::PARAM_STR);
+    
+            $query->execute();
+
+        } catch (PDOException $error){
+            die("An error occurred in addDisponibility method for doctor: " . $error->getMessage());
+        }
+    }
+    
         
 }
 

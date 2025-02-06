@@ -125,6 +125,8 @@ class User {
             session_unset();    
             session_destroy();
         }
+
+		 public function signup();
         
 }
 
