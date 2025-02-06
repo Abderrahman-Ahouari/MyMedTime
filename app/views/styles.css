@@ -1,0 +1,99 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+.confirm {
+    background-color: #2ecc71;
+}
+
+.reject {
+    background-color: #e74c3c;
+}
+
+/* Doctor and Reservation Cards */
+.doctor-card, .reservation-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.reserve, .cancel {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.cancel {
+    background-color: #e74c3c;
+}
