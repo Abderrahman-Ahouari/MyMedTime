@@ -13,14 +13,14 @@ class UserController {
     }
 
     public function login(){
+        echo "login";
          $this->userModel->login();
     }
     
     public function logout(){
+        echo "done sucesfully";
       $this->userModel->logout();
     }
-
-
 }
 
 ?>

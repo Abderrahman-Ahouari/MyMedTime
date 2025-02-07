@@ -60,13 +60,6 @@ class doctor extends user{
     }
 
 
-    public function addDisponibility(){
-        try {
-            
-        } catch (PDOException $error){
-            die("an error in addDisponibility method for doctor: " . $error->getMessage());
-        }
-    }
 
     public function addDisponibility($available_day){
         try {

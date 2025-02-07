@@ -1,5 +1,7 @@
 <?php
 require 'C:/xampp/htdocs/MyMedTime/app/controllers/UserController.php';
+require 'C:/xampp/htdocs/MyMedTime/app/controllers/DoctorController.php';
+require 'C:/xampp/htdocs/MyMedTime/app/controllers/patientController.php';
 
 class Router{
     public  $routes = [];
@@ -18,7 +20,7 @@ class Router{
             $action = $route['action'];
             $controller->$action();
            }
-        
+           
         }
         
         
