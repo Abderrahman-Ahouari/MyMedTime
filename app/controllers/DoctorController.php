@@ -14,7 +14,7 @@ class DoctorController {
 
     public function getDoctorReservations(){
         echo "getDoctorReservations";
-         $this->DoctorModel->getDoctorReservations();
+         $this->DoctorModel->getDoctorReservations();           
     }
     
     public function addDisponibility(){
