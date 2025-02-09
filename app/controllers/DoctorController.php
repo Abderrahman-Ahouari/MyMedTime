@@ -7,7 +7,7 @@ class DoctorController {
         $this->DoctorModel = new doctor;
     }
 
-    public function doctorsignup(){
+    public function cancelReservation(){
         echo "doctor signup";
         $this->DoctorModel->cancelReservation();
     }
@@ -21,6 +21,7 @@ class DoctorController {
         echo "addDisponibility";
       $this->DoctorModel->addDisponibility();
     }
+    
 }
 
 ?>
